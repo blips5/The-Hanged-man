@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package hangman;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * HangMan 1.0
  * @author nath Date 18/11/2017
@@ -15,6 +19,7 @@ public class HangMan {
      */
     private static final int WELCOME_PIC = 0;
     private static int failedAttempts = 1;
+    private static List <Character> guesses = new ArrayList<Character>();
     private static boolean gameOver;
     private static boolean gameState = true;
     private static boolean startGame = false;
@@ -41,6 +46,17 @@ public class HangMan {
             while(gameOver == false){
             char guess = HangManFunctions.Guess();
             boolean correctGuess = false;
+            boolean sameGuess = false;
+            
+            for (Character guesse : guesses) {
+                if(guess == guesse){
+                    sameGuess = true;
+                }
+            }
+            if(sameGuess == false){
+                guesses.add(guess);
+            }
+            
             
             for(int i =0; i < wordPicked.length(); i++){
                 if(guess == wordPicked.charAt(i)){
@@ -51,17 +67,21 @@ public class HangMan {
                 
                 
             }
-            if(correctGuess == true){
+            if(correctGuess == true && sameGuess == false){
                     System.out.println("Your guess was correct");
                     System.out.printf(HangManFunctions.drawHangMan(failedAttempts));
                 }
+            else if(true == sameGuess && true == correctGuess){
+                System.out.println("You have already picked that character!");
+                System.out.printf(HangManFunctions.drawHangMan(failedAttempts));
+            }   
                 else{
-                    failedAttempts++;
-                    System.out.printf(HangManFunctions.drawHangMan(failedAttempts));
-                    System.out.println("Choose another letter. failed Attempts:= "
-                            + (failedAttempts -1));
-                    
-                }
+                failedAttempts++;
+                System.out.printf(HangManFunctions.drawHangMan(failedAttempts));
+                System.out.println("Choose another letter. failed Attempts:= "
+                        + (failedAttempts -1));
+                
+            }
             
             
             System.out.println(guessWord);
