@@ -18,3 +18,36 @@ y
 Game started! Word has been picked.
 Guess the word by inputting one character at a time.
 Enter a letter!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!
